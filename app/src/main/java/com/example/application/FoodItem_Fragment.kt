@@ -45,22 +45,16 @@ class FoodItem_Fragment : Fragment() {
         // button to go back
         val backButton = view.findViewById<Button>(R.id.backButton)
         backButton.setOnClickListener{
-            fun onBackClick(v:View?){
-                val main = MainActivity()
-                Log.d("test", "onBackClick: hi")
+                //val main = MainActivity()
+                //Log.d("test", "onBackClick: hi")
 
-                val transac = parentFragmentManager.beginTransaction()
+                //val transac = parentFragmentManager.beginTransaction()
                 //parentFragmentManager.popBackStackImmediate()
                 //transac.replace(R.id.fragmentitem, main)
 //              //transac.commit()
-                parentFragmentManager.beginTransaction().remove(this).commit()
 
-
-
-
-
-
-            }
+            // remove current stacked fragement
+            parentFragmentManager.beginTransaction().remove(this).commit()
         }
 
 
