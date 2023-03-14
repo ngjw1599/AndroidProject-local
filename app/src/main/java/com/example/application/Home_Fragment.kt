@@ -1,16 +1,18 @@
 package com.example.application
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MainActivity : AppCompatActivity(){
-    /*// declare recyclerview
+class Home_Fragment : Fragment(), foodAdapter.OnItemClickListener {
+    // declare recyclerview
     private lateinit var newRecyclerView: RecyclerView
     // declare list array
     private lateinit var newArrayList: ArrayList<FoodItemClass>
@@ -18,38 +20,15 @@ class MainActivity : AppCompatActivity(){
     lateinit var foodImageArray : Array<Int>
     private var foodNameArray = ArrayList<String>()
     private var foodDescArray = ArrayList<String>()
-*/
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    private var foodPriceArray = ArrayList<Float>()
 
-        val home = Home_Fragment()
-        val promotion = Promotion_Fragment()
-        val cart = View_Cart_Fragment()
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        // shifted all main activity to another home fragment
-        supportFragmentManager.beginTransaction().replace(R.id.framelayout, home).commit()
-
-        // navigation of the bottom nav bar
-        val btmnav = findViewById<BottomNavigationView>(R.id.bottomNav)
-        btmnav.setOnNavigationItemSelectedListener() {
-            // itemid is the id being set in the nav_menu.xml
-            when (it.itemId) {
-                R.id.ic_home ->
-                    supportFragmentManager.beginTransaction().replace(R.id.framelayout, home)
-                        .commit()
-                R.id.ic_promo ->
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.framelayout, promotion).commit()
-                R.id.ic_checkout ->
-                    supportFragmentManager.beginTransaction().replace(R.id.framelayout, cart)
-                        .commit()
-            }
-            true
-        }
-
-
-/*
         //set up file to scan
         val scanner = Scanner(resources.openRawResource(R.raw.menu))
         readFile(scanner)
@@ -63,36 +42,38 @@ class MainActivity : AppCompatActivity(){
         )
 
 
-        newRecyclerView = findViewById(R.id.recyclerView)
-        newRecyclerView.layoutManager = LinearLayoutManager(this)
+        newRecyclerView = view.findViewById(R.id.homeRecyclerView)
+        newRecyclerView.layoutManager = LinearLayoutManager(context)
         newRecyclerView.setHasFixedSize(true)
         newArrayList = arrayListOf<FoodItemClass>()
         getItemData()
 
-        val home = MainActivity()
+        /*val home = MainActivity()
         // fragment
         val promotion = Promotion_Fragment()
-        val cart = View_Cart_Fragment()
+        val cart = View_Cart_Fragment()*/
 
         // navigation of bar
-        val btmnav = findViewById<BottomNavigationView>(R.id.bottomNav)
+        /*val btmnav = view.findViewById<BottomNavigationView>(R.id.bottomNav)
         btmnav.setOnNavigationItemSelectedListener(){
             // itemid is the id being set in the nav_menu.xml
             when (it.itemId){
                 R.id.ic_promo ->
-                    supportFragmentManager.beginTransaction().replace(R.id.constraintLayout, promotion).commit()
+                    parentFragmentManager.beginTransaction().replace(R.id.promofragment, promotion).commit()
                 R.id.ic_checkout ->
-                    supportFragmentManager.beginTransaction().replace(R.id.constraintLayout, cart).commit()
+                    parentFragmentManager.beginTransaction().replace(R.id.promofragment, cart).commit()
             }
             true
-        }
-
+        }*/
+        // return the view inflated
+        return view
 
     }
 
+
     private fun getItemData(){
         for (i in foodImageArray.indices){
-            val fooditem = FoodItemClass(foodNameArray[i], foodImageArray[i], foodDescArray[i])
+            val fooditem = FoodItemClass(foodNameArray[i], foodImageArray[i], foodDescArray[i], foodPriceArray[i])
             newArrayList.add(fooditem)
         }
         // attach adapter to recyclerview to populate data
@@ -109,12 +90,14 @@ class MainActivity : AppCompatActivity(){
             // add food name and description accordingly
             foodNameArray.add(pieces[0])
             foodDescArray.add(pieces[1])
+            foodPriceArray.add((pieces[2]).toFloat())
+
         }
     }
 
-    override fun passData(position: Int, image: Int, name: String, desc: String) {
+    override fun passData(position: Int, image: Int, name: String, desc: String, price: Float) {
         // declaring fragment manager
-        val fm = supportFragmentManager
+        val fm = childFragmentManager
         // make data transaction to fragment
         val fmTransac = fm.beginTransaction()
         // declare fragment you want to send
@@ -124,17 +107,12 @@ class MainActivity : AppCompatActivity(){
         bundle.putInt("input_image", image)
         bundle.putString("input_name", name)
         bundle.putString("input_desc", desc)
+        bundle.putFloat("input_price", price)
         frag.arguments = bundle
 
-        fmTransac.replace(R.id.constraintLayout, frag)
+        fmTransac.replace(R.id.homefragment, frag)
         fmTransac.addToBackStack(null)
         fmTransac.commit()
 
-    }*/
-
-
     }
-
-
-
 }

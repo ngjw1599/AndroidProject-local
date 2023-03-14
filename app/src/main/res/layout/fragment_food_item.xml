@@ -16,7 +16,6 @@
         app:srcCompat="@drawable/card_gradient"
         tools:layout_editor_absoluteX="0dp" />
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/itemLayout"
         android:layout_width="match_parent"
@@ -26,7 +25,7 @@
         <ImageView
             android:id="@+id/foodImage"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@+id/foodName"
             app:layout_constraintTop_toTopOf="parent"
@@ -56,6 +55,20 @@
             app:layout_constraintVertical_bias="0.578"
             tools:layout_editor_absoluteX="-16dp" />
 
+
+        <TextView
+            android:id="@+id/foodPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/foodDesc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="10dp"
+            android:text="Price: $"
+            android:textSize="15dp"
+            android:fontFamily="@font/noto_serif"
+            android:textColor="@color/white"/>
+
         <Button
             android:id="@+id/addButton"
             android:layout_width="wrap_content"
@@ -63,10 +76,9 @@
             android:text="Add to Cart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.959" />
+            app:layout_constraintVertical_bias="0.976" />
 
         <Button
             android:id="@+id/backButton"
@@ -82,6 +94,55 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.023" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/addButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent">
+
+
+            <Button
+                android:id="@+id/subtract"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:text="-"
+                app:layout_constraintBottom_toTopOf="@+id/addButton"
+                app:layout_constraintEnd_toStartOf="@+id/add"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/foodAmount"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/add"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:text="+"
+                app:layout_constraintBottom_toTopOf="@+id/addButton" />
+
+
+        </LinearLayout>
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

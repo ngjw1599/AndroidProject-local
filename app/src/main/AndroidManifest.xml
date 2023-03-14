@@ -12,10 +12,13 @@
         android:theme="@style/Theme.Application"
         tools:targetApi="31">
         <activity
+            android:name=".Promotion_Fragment"
+            android:exported="false" />
+        <activity
             android:name=".Checkout_Activity"
             android:exported="false" />
         <activity
-            android:name=".View_Cart_Activity"
+            android:name=".View_Cart_Fragment"
             android:exported="false" />
         <activity
             android:name=".AR_View_Activity"

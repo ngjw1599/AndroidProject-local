@@ -29,15 +29,16 @@ class foodAdapter(private val foodList: ArrayList<FoodItemClass>,
             val image = foodList[position].photo
             val name = foodList[position].name
             val desc = foodList[position].desc
+            val price = foodList[position].price
             if (position != RecyclerView.NO_POSITION){
-                listener.passData(position,image,name,desc)
+                listener.passData(position,image,name,desc,price)
             }
 
         }
 
     }
     interface OnItemClickListener{
-        fun passData(position: Int, image: Int, name: String, desc: String)
+        fun passData(position: Int, image: Int, name: String, desc: String, price: Float)
     }
 
     //https://guides.codepath.com/android/using-the-recyclerview
