@@ -32,8 +32,6 @@ class Promotion_Fragment : Fragment(), foodAdapter.OnItemClickListener {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_promotion, container, false)
 
-
-
         //set up file to scan
         val scanner = Scanner(resources.openRawResource(R.raw.promo))
         readFile(scanner)
@@ -52,33 +50,6 @@ class Promotion_Fragment : Fragment(), foodAdapter.OnItemClickListener {
         promoRecyclerView.setHasFixedSize(true)
         promoArrayList = arrayListOf<FoodItemClass>()
         getItemData()
-
-
-        val btmView = activity?.findViewById<BottomNavigationView>(R.id.bottomNav)
-
-
-
-        val promolayout = view.findViewById<RecyclerView>(R.id.promoRecyclerView)
-
-        val home = Home_Fragment()
-        val promotion = Promotion_Fragment()
-        val cart = View_Cart_Fragment()
-
-        /*val btmnav = view.findViewById<BottomNavigationView>(R.id.bottomNav)
-        btmnav.setOnNavigationItemSelectedListener(){
-            // itemid is the id being set in the nav_menu.xml
-            when (it.itemId){
-                R.id.ic_home->
-                    parentFragmentManager.beginTransaction().replace(R.id.constraintLayout, home).commit()
-                R.id.ic_promo ->
-                    parentFragmentManager.beginTransaction().replace(R.id.constraintLayout, promotion).commit()
-                R.id.ic_checkout ->
-                    parentFragmentManager.beginTransaction().replace(R.id.constraintLayout, cart).commit()
-            }
-            true
-        }*/
-
-
 
 
         return view

@@ -48,24 +48,6 @@ class Home_Fragment : Fragment(), foodAdapter.OnItemClickListener {
         newArrayList = arrayListOf<FoodItemClass>()
         getItemData()
 
-        /*val home = MainActivity()
-        // fragment
-        val promotion = Promotion_Fragment()
-        val cart = View_Cart_Fragment()*/
-
-        // navigation of bar
-        /*val btmnav = view.findViewById<BottomNavigationView>(R.id.bottomNav)
-        btmnav.setOnNavigationItemSelectedListener(){
-            // itemid is the id being set in the nav_menu.xml
-            when (it.itemId){
-                R.id.ic_promo ->
-                    parentFragmentManager.beginTransaction().replace(R.id.promofragment, promotion).commit()
-                R.id.ic_checkout ->
-                    parentFragmentManager.beginTransaction().replace(R.id.promofragment, cart).commit()
-            }
-            true
-        }*/
-        // return the view inflated
         return view
 
     }

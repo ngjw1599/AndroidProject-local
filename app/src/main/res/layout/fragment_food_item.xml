@@ -37,9 +37,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alegreya_sc"
+            android:padding="20dp"
             android:textColor="@color/white"
             android:textSize="35dp"
-            android:padding="20dp"
             app:layout_constraintTop_toBottomOf="@+id/foodImage"
             tools:layout_editor_absoluteX="-16dp" />
 
@@ -64,13 +64,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:padding="10dp"
-            android:text="Price: $"
             android:textSize="15dp"
             android:fontFamily="@font/noto_serif"
             android:textColor="@color/white"/>
 
         <Button
-            android:id="@+id/addButton"
+            android:id="@+id/addToCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add to Cart"
@@ -100,24 +99,23 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/addButton"
+            app:layout_constraintBottom_toTopOf="@+id/addToCart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent">
 
 
             <Button
-                android:id="@+id/subtract"
+                android:id="@+id/subMultiple"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
                 android:text="-"
-                app:layout_constraintBottom_toTopOf="@+id/addButton"
-                app:layout_constraintEnd_toStartOf="@+id/add"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:backgroundTint="@null"
+                android:background="@drawable/addmin_button"/>
 
             <TextView
                 android:id="@+id/foodAmount"
@@ -129,15 +127,15 @@
                 android:textSize="20dp" />
 
             <Button
-                android:id="@+id/add"
+                android:id="@+id/addMultiple"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
+                app:backgroundTint="@null"
+                android:background="@drawable/addmin_button"
                 android:text="+"
-                app:layout_constraintBottom_toTopOf="@+id/addButton" />
+                app:layout_constraintStart_toStartOf="parent" />
 
 
         </LinearLayout>
