@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.*
 import kotlin.collections.ArrayList
+import androidx.appcompat.widget.SearchView
 
 class Home_Fragment : Fragment(), foodAdapter.OnItemClickListener {
     // declare recyclerview
@@ -21,6 +23,8 @@ class Home_Fragment : Fragment(), foodAdapter.OnItemClickListener {
     private var foodNameArray = ArrayList<String>()
     private var foodDescArray = ArrayList<String>()
     private var foodPriceArray = ArrayList<Float>()
+
+    private lateinit var adapter: foodAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +52,19 @@ class Home_Fragment : Fragment(), foodAdapter.OnItemClickListener {
         newArrayList = arrayListOf<FoodItemClass>()
         getItemData()
 
+        val searchView = view.findViewById<SearchView>(R.id.searchBar)
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(filteredText: String?): Boolean{
+                filterList(filteredText!!)
+                return true
+            }
+        })
+
+
         return view
 
     }
@@ -58,8 +75,9 @@ class Home_Fragment : Fragment(), foodAdapter.OnItemClickListener {
             val fooditem = FoodItemClass(foodNameArray[i], foodImageArray[i], foodDescArray[i], foodPriceArray[i])
             newArrayList.add(fooditem)
         }
-        // attach adapter to recyclerview to populate data
-        newRecyclerView.adapter = foodAdapter(newArrayList, this)
+        // attach adapter to recyclerv  iew to populate data
+        adapter = foodAdapter(newArrayList, this)
+        newRecyclerView.adapter = adapter
 
     }
 
@@ -74,6 +92,25 @@ class Home_Fragment : Fragment(), foodAdapter.OnItemClickListener {
             foodDescArray.add(pieces[1])
             foodPriceArray.add((pieces[2]).toFloat())
 
+        }
+    }
+
+    private fun filterList(query: String){
+
+        if (query!= null){
+            var filterArrayList = ArrayList<FoodItemClass>()
+            for (item in newArrayList){
+                if (item.name.toLowerCase(Locale.ROOT).contains(query)){
+                    filterArrayList.add(item)
+                }
+
+            }
+            if (filterArrayList.isEmpty()){
+                Toast.makeText(context, "there is nothing", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                adapter.setFilterText(filterArrayList)
+            }
         }
     }
 
@@ -97,4 +134,7 @@ class Home_Fragment : Fragment(), foodAdapter.OnItemClickListener {
         fmTransac.commit()
 
     }
+
+
+
 }

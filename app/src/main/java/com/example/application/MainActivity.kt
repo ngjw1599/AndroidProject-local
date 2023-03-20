@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity(){
 
         getCartListViewModel()
 
+
     }
 
     // get the cart view model

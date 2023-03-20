@@ -5,8 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/promofragment"
+    android:background="#130F40"
     tools:context=".Promotion_Fragment">
 
+    <ImageView
+        android:id="@+id/gradient"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.9"
+        app:srcCompat="@drawable/card_gradient"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/promoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alegreya_sc"
+        android:padding="10dp"
+        android:text="Promotions"
+        android:textColor="#EEE9F3"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@id/promoRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/promoRecyclerView"
@@ -16,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/promoText"
         app:layout_constraintVertical_bias="0.0" />
 
 

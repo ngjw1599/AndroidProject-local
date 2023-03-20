@@ -5,11 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.Button
+import android.widget.Filter
 import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.util.*
+import kotlin.collections.ArrayList
 
-class foodAdapter(private val foodList: ArrayList<FoodItemClass>,
+class foodAdapter(private var foodList: ArrayList<FoodItemClass>,
     private val listener: OnItemClickListener):
     RecyclerView.Adapter<foodAdapter.MyViewHolder>(){
 
@@ -22,8 +26,8 @@ class foodAdapter(private val foodList: ArrayList<FoodItemClass>,
 
         init{
             foodCart.setOnClickListener(this)
-        }
 
+        }
         override fun onClick(v: View?) {
             val position = absoluteAdapterPosition
             val image = foodList[position].photo
@@ -47,7 +51,7 @@ class foodAdapter(private val foodList: ArrayList<FoodItemClass>,
         val context = parent.context
         val inflater = LayoutInflater.from(context)
         val itemView = inflater.inflate(R.layout.menucard_item, parent, false)
-
+        itemView.clipToOutline = true
         return MyViewHolder(itemView)
     }
 
@@ -61,6 +65,12 @@ class foodAdapter(private val foodList: ArrayList<FoodItemClass>,
         holder.foodPhoto.setImageResource(currentItem.photo)
         holder.foodtextView.text = currentItem.name
     }
+    fun setFilterText(filteredfoodList: ArrayList<FoodItemClass>){
+        this.foodList = filteredfoodList
+        notifyDataSetChanged()
+    }
+
+
 
 
 
